@@ -6,7 +6,7 @@ A simple Node.js API server setup. Built with Express, MongoDB (mongoose) and Pa
 ## Usage
 
 ```bash
-$ git clone https://github.com/robert52/express-api-starter.git
+$ git clone https://github.com/adrian1605/express-api-starter.git
 $ cd express-api-starter
 $ npm install
 $ cp config/environments/example.js config/environments/development.js
