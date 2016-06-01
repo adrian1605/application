@@ -10,6 +10,10 @@ router.post('/register', accountCtrl.register);
 /**
  *  Stateful authentication
  */
+
+/**
+ *  Email & pass -> /signin
+ *  */
 router.post('/signin', authCtrl.signin);
 router.get('/signout', authCtrl.signout);
 

@@ -2,8 +2,8 @@
 
 module.exports.toJSON = sendJSONresponse;
 
-function sendJSONresponse(prop) {
+function sendJSONresponse(prop, status) {
   return function(req, res, next) {
-    res.json(req.resources[prop]);
+    res.status(status || 200).json(req.resources[prop]);
   }
 }
