@@ -1,4 +1,4 @@
-# express API starter
+# MIEZ
 
 A simple Node.js API server setup. Built with Express, MongoDB (mongoose) and Passport for authentication.
 
@@ -6,7 +6,7 @@ A simple Node.js API server setup. Built with Express, MongoDB (mongoose) and Pa
 ## Usage
 
 ```bash
-$ git clone https://github.com/adrian1605/express-api-starter.git
+$ git clone https://github.com/adrian1605/miez.git
 $ cd express-api-starter
 $ npm install
 $ cp config/environments/example.js config/environments/development.js
@@ -69,4 +69,4 @@ The test folder stores the Mocha test suites.
 
 ## License
 
-[MIT](https://github.com/robert52/express-api-starter/blob/master/LICENSE)
+[MIT](https://github.com/adrian1605/miez/blob/master/LICENSE)
