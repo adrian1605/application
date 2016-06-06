@@ -16,7 +16,8 @@ describe('User model', function() {
   var newUserData = {
     email: 'register_user@test.com',
     password: 'user_password',
-    name: 'New Test User'
+    name: 'New Test User',
+    role: 'admin'
   };
 
   before(function(done) {

@@ -13,7 +13,7 @@ const User = mongoose.model('User');
 module.exports.register = registerUser;
 
 function registerUser(req, res, next) {
-  let userData = _.pick(req.body, 'name', 'email', 'password');
+  let userData = _.pick(req.body, 'name', 'email', 'password', 'role');
 
   User.register(userData, (err, user) => {
     if (err && (11000 === err.code || 11001 === err.code)) {
