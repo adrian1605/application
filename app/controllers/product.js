@@ -10,23 +10,20 @@ const _ = require('lodash');
 const mongoose = require('mongoose');
 const Product = mongoose.model('Product');
 const ObjectId = mongoose.Types.ObjectId;
+const productService = require('../services/product.service');
 
 /**
  *  Module exports
  */
-module.exports.findById = findProductById;
+module.exports.findBySku = findProductBySku;
 module.exports.getAll = getAllProducts;
 module.exports.create = createProduct;
 module.exports.update = updateProduct;
 module.exports.delete = deleteProduct;
 
 
-function findProductById(req, res, next) {
-    if (!ObjectId.isValid(req.params.productId)) {
-        return res.status(404).json({message: '404 not found'});
-    }
-
-    Product.findById(req.params.productId, (err, product) => {
+function findProductBySku(req, res, next) {
+    productService.findProductBySku(req.params.productSku, (err, product) => {
         if (err) {
             next(err);
         } else if (product) {
@@ -39,7 +36,7 @@ function findProductById(req, res, next) {
 }
 
 function getAllProducts(req, res, next) {
-    Product.find((err, products) => {
+    productService.getAllProducts((err, products) => {
         if (err) {
             return next(err);
         }
@@ -51,9 +48,9 @@ function getAllProducts(req, res, next) {
 
 function createProduct(req, res, next) {
     let userId = req.user._id;
-    let product = new Product(Object.assign({user: userId}, req.body));
+    let productData = Object.assign({user: userId}, req.body);
 
-    product.save((err, newProduct) => {
+    productService.addProduct(productData, (err, newProduct) => {
         if (err) {
             return next(err);
         }
@@ -64,15 +61,7 @@ function createProduct(req, res, next) {
 }
 
 function updateProduct(req, res, next) {
-    let product = req.resources.product;
-
-    console.log('PROD: ', product);
-
-    _.merge(product, req.body);
-
-    console.log('PROD AFTER ASSIGN', product);
-
-    product.save((err, updatedProduct) => {
+    productService.updateProduct(req.params.productSku, (err, updatedProduct) => {
         if (err) {
             return next(err);
         }
@@ -83,7 +72,7 @@ function updateProduct(req, res, next) {
 }
 
 function deleteProduct(req, res, next) {
-    req.resources.product.remove(err => {
+    productService.deleteProduct(req.params.productSku, err => {
         if (err) {
             return next(err);
         }

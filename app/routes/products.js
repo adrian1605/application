@@ -11,8 +11,8 @@ const response = require('../helpers/response');
 
 router.post('/products', auth.ensured, productCtrl.create, response.toJSON('product', 201));
 router.get('/products', auth.ensured, productCtrl.getAll, response.toJSON('products'));
-router.get('/products/:productId', auth.ensured, productCtrl.findById, response.toJSON('product'));
-router.put('/products/:productId', auth.ensured, productCtrl.findById, productCtrl.update, response.toJSON('product'));
-router.delete('/products/:productId', auth.ensured, productCtrl.findById, productCtrl.delete);
+router.get('/products/:productSku', auth.ensured, productCtrl.findBySku, response.toJSON('product'));
+router.put('/products/:productSku', auth.ensured, productCtrl.update, response.toJSON('product'));
+router.delete('/products/:productSku', auth.ensured, productCtrl.delete);
 
 module.exports = router;

@@ -77,7 +77,7 @@ class Product {
             if (err) {
                 callback(err);
             } else if (product) {
-                product.remove((err, product) => callback(err, product));
+                product.remove((err, product) => callback(err));
             } else {
                 callback(new Error('failed to find product'));
             }
