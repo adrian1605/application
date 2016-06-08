@@ -96,11 +96,11 @@ describe('Product Service', function() {
         });
     });
 
-    it('should find updated product by sku', data => {
+    it('should find updated product by sku', done => {
         var prodData = productFixture.updateData;
         Product = new ProductService();
 
-        Product.findProductBySku('asus-f550j', prodData, (err, prod) => {
+        Product.findProductBySku('asus-f550j', (err, prod) => {
             if (err) throw err;
 
             should.exist(prod);
@@ -110,10 +110,10 @@ describe('Product Service', function() {
              * NOT SURE IF DEEP EQUALS <- returned product may have more properties
              * for money and details
              */
-            prod.category.should.equal(prodData.category);
+
             prod.active.should.equal(prodData.active);
-            expect(prod.price).to.deep.equal(prodData.price);
-            expect(prod.details).to.deep.equal(prodData.details);
+            prod.price.should.have.property('amount').equal(prodData.price.amount);
+            prod.price.should.have.property('factor').equal(prodData.price.factor);
 
             done();
         });
